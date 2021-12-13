@@ -1,0 +1,55 @@
+﻿@model SportWebSite.ServiceModels.UserServiceModel
+@using SportWebSite.Domain.Enums
+@{
+    Layout = "_Layout";
+
+}
+@using SportWebSite.Domain.Authorization;
+
+@if (User.IsInRole(Roles.ADMIN))
+{
+    <form method="post">
+        <div class="go-back">
+            <a class="btn btn-primary btn-block" href="~/User/ShowUsers">Back</a>
+        </div>
+        <div class="form-outline mb-4 wrapper-user">
+            <h3 class="title-sign-up">User registration</h3>
+
+            <div class="col-1-user">
+                <label class="form-label" for="form1Example1">Login</label>
+                <input type="text" id="form1Example1" class="form-control w-250" asp-for="UserName" minlength="3" maxlength="25" required /> <span asp-validation-for="UserName"></span>
+
+                <label class="form-label" for="form1Example2">Email</label>
+                <input type="email" id="form1Example2" class="form-control w-250" asp-for="Email" required /> <span asp-validation-for="Email"></span>
+            </div>
+
+            <div class="col-2-user">
+                <label class="form-label" for="form1Example2">Name</label>
+                <input type="text" id="form1Example2" class="form-control w-250" asp-for="Name" minlength="1" maxlength="25" required /> <span asp-validation-for="Name"></span>
+
+                <label class="form-label" for="form1Example2">Date of Birth</label>
+                <input type="date" id="form1Example2" class="form-control w-250" asp-for="BirthDate" required /> <span asp-validation-for="BirthDate"></span>
+            </div>
+
+            <div class="col-3-user">
+                <label class="form-label" for="form1Example2">Location</label>
+                <input type="text" id="form1Example2" class="form-control w-250" asp-for="Location" minlength="1" maxlength="40" required /> <span asp-validation-for="Location"></span>
+
+                <label class="form-label" for="form1Example2">Gender</label>
+                @Html.DropDownListFor(m => m.Gender, new SelectList(Enum.GetValues(typeof(Gender))), new { @class = "w-250 form-control" }) <span asp-validation-for="Gender"></span>
+            </div>
+
+            <div class="col-4-user">
+                <label class="form-label" for="form1Example2">User role</label>
+                @Html.DropDownListFor(m => m.Role, new SelectList(Enum.GetValues(typeof(UserRole))), new { @class = "w-250 form-control" }) <span asp-validation-for="Role"></span>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block sign-up">Sign up</button>
+        </div>
+    </form>
+}
+else
+{
+    <div class="mt-300">
+        You don't have any permissions to see this page.
+    </div>
+}

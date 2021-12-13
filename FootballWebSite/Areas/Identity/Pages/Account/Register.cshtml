@@ -1,0 +1,114 @@
+﻿@page
+@model RegisterModel
+@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Register";
+}
+@using SportWebSite.Domain.Enums;
+@using SportWebSite.Domain.Authorization;
+
+<section class="h-100 h-custom gradient-custom-2">
+    <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12">
+                    <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+                        <div class="card-body p-0">
+                            <div class="row g-0">
+                                <div class="col-lg-6">
+                                    <div class="p-5">
+                                        <h3 class="fw-normal mb-5" style="color: #4835d4;">General Infomation</h3>
+                                        <div asp-validation-summary="All" class="text-danger"></div>
+                                        <div class="row">
+                                            <div class="mb-4 pb-2">
+                                                
+                                                <div class="form-outline">
+                                                    <label class="form-label" asp-for="Input.Email" for="form3Examplev2">Email</label>
+                                                    <input type="email" asp-for="Input.Email" id="form3Examplev2" class="form-control form-control-lg" />
+                                                </div>
+
+                                            </div>
+                                            <div class="mb-4 pb-2">
+
+                                                <div class="form-outline">
+                                                    <label class="form-label" asp-for="Input.Name" for="form3Examplev3">Full name</label>
+                                                    <input type="text" asp-for="Input.Name" id="form3Examplev3" class="form-control form-control-lg" />
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-4 pb-2">
+                                            <div class="form-outline">
+                                                <label class="form-label" asp-for="Input.Password" for="form3Examplev4">Password</label>
+                                                <input type="password" asp-for="Input.Password" id="form3Examplev4" class="form-control form-control-lg" />
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="mb-4 pb-2">
+                                                <div class="form-outline">
+                                                    <label class="form-label" asp-for="Input.ConfirmPassword" for="form3Examplev5">Confirm password</label>
+                                                    <input type="password" asp-for="Input.ConfirmPassword" id="form3Examplev5" class="form-control form-control-lg" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 bg-indigo text-white" style="background: #8435bf;">
+                                    <div class="p-5">
+                                        <h3 class="fw-normal mb-5">Details</h3>
+
+                                        <div class="mb-4 pb-2">
+                                            <div class="form-outline form-white">
+                                                <label class="form-label" asp-for="Input.BirthDate" for="form3Examplea2">Birth Date</label>
+                                                <input type="date" asp-for="Input.BirthDate" id="form3Examplea2" class="form-control form-control-lg" />
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-4 pb-2">
+                                            <div class="form-outline form-white">
+                                                <label class="form-label" asp-for="Input.Location" for="form3Examplea3">Location</label>
+                                                <input type="text" asp-for="Input.Location" id="form3Examplea3" class="form-control form-control-lg" />
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-4 pb-2">
+                                            <div class="form-outline form-white">
+                                                <label class="form-label" asp-for="Input.Gender" for="form3Examplea3">Gender</label>
+                                                @Html.DropDownListFor(m => m.Input.Gender, new SelectList(Enum.GetValues(typeof(Gender))), new { @class = "w-250 form-control" })
+                                            </div>
+                                        </div>
+
+                                        @if (User.IsInRole(Roles.ADMIN))
+                                        {
+                                            <div class="mb-4">
+                                                <div class="form-outline form-white">
+                                                    <label class="form-label" asp-for="Input.Role" for="form3Examplea3">Role</label>
+                                                    @Html.DropDownListFor(m => m.Input.Role, new SelectList(Enum.GetValues(typeof(UserRole))), new { @class = "w-250 form-control" })
+                                                </div>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="mb-4">
+                                                <div class="form-outline form-white">
+                                                    <input type="hidden" asp-for="Input.Role" id="form3Examplea3" class="form-control form-control-lg" value="@Roles.PLAYER" />
+                                                </div>
+                                            </div>
+                                        }
+                                        <button type="submit" style="margin-left:27vh; margin-top:5vh;" class="btn btn-light btn-lg" data-mdb-ripple-color="dark">Register</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

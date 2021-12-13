@@ -1,0 +1,118 @@
+﻿@model SportWebSite.ServiceModels.TeamServiceModel
+@{
+    Layout = "_Layout";
+}
+@using SportWebSite.Domain.Enums
+@using SportWebSite.Domain.Authorization;
+
+@if (User.IsInRole(Roles.ADMIN) || User.IsInRole(Roles.MANAGER))
+{
+    <section class="h-100 h-custom gradient-custom-2">
+        <form method="post">
+            <div class="container py-5 h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-12">
+                        <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+                            <div class="card-body p-0">
+                                <div class="row g-0">
+                                    <div class="col-lg-6">
+                                        <div class="p-5">
+                                            <div class="row">
+                                                <div class="mb-4 pb-2">
+                                                    <div class="form-outline form-white">
+                                                        <label class="form-label" asp-for="TeamName" for="form3Examplea2">Team Name</label>
+                                                        <input type="text" asp-for="TeamName" value="@Model.TeamName" id="form3Examplea2" class="form-control form-control-lg" />
+                                                    </div>
+                                                </div>
+                                                @*<h3 class="fw-normal mb-5" style="color: #4835d4;">General Infomation</h3>
+                                                        <div asp-validation-summary="All" class="text-danger"></div>
+                                                        <div class="row">
+                                                            <div class="mb-4 pb-2">
+                                                                <input type="hidden" asp-for="TeamName" value="@Model.TeamName" id="form3Examplev2" class="form-control form-control-lg" />
+                                                                <div class="form-outline">
+                                                                    <label class="form-label" asp-for="Email" for="form3Examplev2">Email</label>
+                                                                    <input type="email" asp-for="Email" value="@Model.Email" id="form3Examplev2" class="form-control form-control-lg" />
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="mb-4 pb-2">
+
+                                                                <div class="form-outline">
+                                                                    <label class="form-label" asp-for="Name" for="form3Examplev3">Full name</label>
+                                                                    <input type="text" asp-for="Name" value="@Model.Name" id="form3Examplev3" class="form-control form-control-lg" />
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 bg-indigo text-white" style="background: #8435bf;">
+                                        <div class="p-5">
+                                            <div asp-validation-summary="All" class="text-danger"></div>
+
+                                            <div class="mb-4 pb-2">
+                                                <div class="form-outline form-white">
+                                                    <label class="form-label" asp-for="SportType" for="form3Examplea3">SportType</label>
+                                                    @Html.DropDownListFor(m => m.SportType, new SelectList(Enum.GetValues(typeof(SportType))), new { @class = "w-250", @style = "color: black; margin-left: 16vh;" })
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-4">
+                                                <div class="form-outline form-white">
+                                                    <label class="form-label" asp-for="PlayerIds" for="form3Examplea3">Players</label>
+                                                    @Html.DropDownListFor(model => model.PlayerIds, Model.Players.Select(p => new SelectListItem { Text = p.Name, Value = p.Id.ToString(), Selected = true }), new { @multiple = "multiple", @class = "selectpicker w-250", @style = "color: black;" })
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-4">
+                                                <div class="form-outline form-white">
+                                                    <label class="form-label" asp-for="PlayerIds" for="form3Examplea3">Free agents</label>
+                                                    @Html.DropDownListFor(model => model.PlayerIds, ViewBag.freeAgentsList as IEnumerable<SelectListItem>, new { @multiple = "multiple", @class = "selectpicker w-250", @style = "color: black;" })
+                                                </div>
+                                            </div>
+
+                                            <button type="submit" style="margin-left:27vh; margin-top:5vh;" class="btn btn-light btn-lg" data-mdb-ripple-color="dark">Update</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+
+    @*<div class="form-outline mb-4">
+            <div class="go-back">
+                <a class="btn btn-primary btn-block" href="~/Team/ShowTeams">Back</a>
+            </div>
+            <br />
+            <form method="post">
+                <input type="hidden" asp-for="Id" value="@Model.Id" />
+                <table class="w-250">
+                    <tr>
+                        <td>Team name:</td>
+                        <td><input class="w-250" type="text" asp-for="TeamName" value="@Model.TeamName" required /> <span asp-validation-for="TeamName"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Type of sport:</td>
+                        <td>@Html.DropDownListFor(m => m.SportType, new SelectList(Enum.GetValues(typeof(SportType))), new { @class = "w-250" }) <span asp-validation-for="SportType"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Players:</td>
+                        <td>@Html.DropDownListFor(model => model.PlayerIds, ViewBag.playersList as List<SelectListItem>, new { @multiple = "multiple", @class = "selectpicker w-250 " })</td>
+                    </tr>
+                </table>
+                <button type="submit" class="btn btn-warning btn-rounded">Update</button>
+            </form>
+        </div>*@
+}
+else
+{
+    <div class="mt-300">
+        You don't have any permissions to see this page.
+    </div>
+}

@@ -1,0 +1,25 @@
+﻿@{
+    Layout = "_Layout";
+}
+@using SportWebSite.Domain.Authorization;
+
+@if (User.IsInRole(Roles.ADMIN) || User.IsInRole(Roles.MANAGER))
+{
+    <div>
+        <div class="go-back">
+            <a class="btn btn-primary btn-block" href="~/Team/ShowTeams">Back</a>
+        </div>
+        <form asp-controller="Team" asp-action="DeleteTeam" method="post">
+            <div class="form-group">
+                <p style="margin-top: 50px">Are you sure to delete this team?</p>
+                <button type="submit" class="btn btn-danger btn-rounded">Delete</button>
+            </div>
+        </form>
+    </div>
+}
+else
+{
+    <div class="mt-300">
+        You don't have any permissions to see this page.
+    </div>
+}

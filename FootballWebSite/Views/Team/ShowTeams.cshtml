@@ -1,0 +1,50 @@
+﻿@model IEnumerable<SportWebSite.Domain.Entities.Team>
+@{
+    Layout = "_Layout";
+}
+@using SportWebSite.Domain.Authorization;
+<div class="go-back">
+    <a class="btn btn-primary btn-block" href="..">Back</a>
+</div>
+<br />
+<table class="teams" id="teams">
+    <thead>
+        <tr>
+            <th scope="col">Team name</th>
+            <th scope="col">Sport type</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var team in Model)
+        {
+            <tr>
+                <td>@team.TeamName</td>
+                <td>@team.SportType</td>
+                <td class="button">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        @if (User.IsInRole(Roles.ADMIN) || User.IsInRole(Roles.MANAGER))
+                        {
+                            <a class="btn in-table-button btn-primary" style="background-color: #f3c806; " href="EditTeam/@team.Id" role="button">
+                                <i class="fas fa-pen"></i>
+                            </a>
+                            <a class="btn in-table-button btn-primary" style="background-color: #f31406; " href="DeleteTeam/@team.Id" role="button">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        }
+                        <a class="btn in-table-button btn-primary" style="background-color: #87cefa; " href="../Player/ShowPlayers/@team.Id" role="button">
+                            <i class="fas fa-users"></i>
+                        </a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@if (User.IsInRole(Roles.ADMIN) || User.IsInRole(Roles.MANAGER))
+{
+    <a class="btn btn-primary" style="background-color: #0af306; " href="AddTeam" role="button">
+        <i class="fas fa-plus-circle"></i>
+    </a>
+}

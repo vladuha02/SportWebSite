@@ -1,0 +1,33 @@
+[
+  {
+    "outputFileName": "wwwroot/css/bundle.min.css",
+    "inputFiles": [
+      "wwwroot/css/bootstrap.css",
+      "wwwroot/css/bootstrap-grid.css",
+      "wwwroot/css/bootstrap-reboot.css",
+      "wwwroot/css/bootstrap-select.min.css",
+      "wwwroot/css/custom_style.css",
+      "wwwroot/css/fontawesome-all.min.css",
+      "wwwroot/css/nicepage.css",
+      "wwwroot/css/Page-13.css",
+      "wwwroot/css/site.css",
+      "wwwroot/css/styles.css",
+      "wwwroot/css/swiper.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/bundle.min.js",
+    "inputFiles": [
+      "wwwroot/js/site.js",
+      "wwwroot/js/bootstrap.js",
+      "wwwroot/js/bootstrap-select.min.js",
+      "wwwroot/js/jquery-1.9.1.min.js",
+      "wwwroot/js/nicepage.js",
+      "wwwroot/js/scripts.js",
+      "wwwroot/js/swiper.min.js"
+    ],
+    "minify": {
+      "enabled": true
+    }
+  }
+]

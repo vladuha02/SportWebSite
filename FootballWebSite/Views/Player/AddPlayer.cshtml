@@ -1,0 +1,45 @@
+﻿@model SportWebSite.ServiceModels.PlayerServiceModel
+@using SportWebSite.Domain.Enums
+@{
+    Layout = "_Layout";
+
+}
+@using SportWebSite.Domain.Authorization;
+@if (User.IsInRole(Roles.ADMIN) || User.IsInRole(Roles.MANAGER))
+{
+    <form method="post">
+        <div class="go-back">
+            <a class="btn btn-primary btn-block" href="~/">Back</a>
+        </div>
+        <div class="form-outline mb-4 wrapper">
+            <h3 class="title-sign-up">Player registration</h3>
+            <div class="col-1">
+                <label class="form-label" for="form1Example1">Name</label>
+                <input type="text" id="form1Example1" class="form-control w-250" asp-for="name" minlength="1" maxlength="60" required /> <span asp-validation-for="name"></span>
+
+                <label class="form-label" for="form1Example2">Birth date</label>
+                <input type="date" id="form1Example2" class="form-control w-250" asp-for="dateOfBirth" required /> <span asp-validation-for="dateOfBirth"></span>
+
+                <label class="form-label" for="form1Example2">Birth country</label>
+                <input type="text" id="form1Example2" class="form-control w-250" asp-for="countryOfBirth" minlength="1" maxlength="30" required /> <span asp-validation-for="countryOfBirth"></span>
+            </div>
+            <div class="col-2">
+                <label class="form-label" for="form1Example2">Nationality</label>
+                <input type="text" id="form1Example2" class="form-control w-250" asp-for="nationality" minlength="1" maxlength="30" required /> <span asp-validation-for="nationality"></span>
+
+                <label class="form-label" for="form1Example2">Position</label>
+                <input type="text" id="form1Example2" class="form-control w-250" asp-for="position" minlength="1" maxlength="20" required /> <span asp-validation-for="position"></span>
+
+                <label class="form-label" for="form1Example2">Team role</label>
+                @Html.DropDownListFor(m => m.role, new SelectList(Enum.GetValues(typeof(TeamRole))), new { @class = "w-250 form-control" })
+            </div>
+            <button type="submit" class="btn btn-primary btn-block sign-up">Add player</button>
+        </div>
+    </form>
+}
+else
+{
+    <div class="mt-300">
+        You don't have permissions to see this page.
+    </div>
+}

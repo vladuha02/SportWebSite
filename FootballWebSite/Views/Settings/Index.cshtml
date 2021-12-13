@@ -1,0 +1,20 @@
+﻿@{
+    Layout = "_Layout";
+}
+@using SportWebSite.Domain.Authorization;
+
+@if (User.IsInRole(Roles.ADMIN))
+{
+    <div class="go-back">
+        <a class="btn btn-primary btn-block" href="..">Back</a>
+    </div>
+    <div class="sync">
+        <a class="btn btn-primary btn-block bg-dark btn-sync" href="~/Player/ShowMessage?isApi=true">Sync Players</a>
+    </div>
+}
+else
+{
+    <div class="mt-300">
+        You don't have permissions to see this page.
+    </div>
+}

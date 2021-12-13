@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31624.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SportWebSite", "FootballWebSite\SportWebSite.csproj", "{8474DAA2-C791-4545-A71C-57A9F98E247B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A80E8B68-A4BD-465E-A3D4-8E23C96BBB93} = {A80E8B68-A4BD-465E-A3D4-8E23C96BBB93}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SportWebSite.Domain", "SportWebSite.Core\SportWebSite.Domain.csproj", "{0F329D4A-FADB-4F6F-A307-087DE1DA4A1B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SportWebSite.Services", "SportWebSite.Services\SportWebSite.Services.csproj", "{EC05D578-69EF-4D4E-BFBF-73878EF3A753}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportWebSite.Data", "SportWebSite.Context\SportWebSite.Data.csproj", "{B82C4DA8-234F-45BC-A7F7-D01EB14E7950}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportWebSite.ServiceModels", "SportWebSite.ServiceModels\SportWebSite.ServiceModels.csproj", "{A80E8B68-A4BD-465E-A3D4-8E23C96BBB93}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8474DAA2-C791-4545-A71C-57A9F98E247B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8474DAA2-C791-4545-A71C-57A9F98E247B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8474DAA2-C791-4545-A71C-57A9F98E247B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8474DAA2-C791-4545-A71C-57A9F98E247B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F329D4A-FADB-4F6F-A307-087DE1DA4A1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F329D4A-FADB-4F6F-A307-087DE1DA4A1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F329D4A-FADB-4F6F-A307-087DE1DA4A1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F329D4A-FADB-4F6F-A307-087DE1DA4A1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC05D578-69EF-4D4E-BFBF-73878EF3A753}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC05D578-69EF-4D4E-BFBF-73878EF3A753}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC05D578-69EF-4D4E-BFBF-73878EF3A753}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC05D578-69EF-4D4E-BFBF-73878EF3A753}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B82C4DA8-234F-45BC-A7F7-D01EB14E7950}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B82C4DA8-234F-45BC-A7F7-D01EB14E7950}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B82C4DA8-234F-45BC-A7F7-D01EB14E7950}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B82C4DA8-234F-45BC-A7F7-D01EB14E7950}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A80E8B68-A4BD-465E-A3D4-8E23C96BBB93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A80E8B68-A4BD-465E-A3D4-8E23C96BBB93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A80E8B68-A4BD-465E-A3D4-8E23C96BBB93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A80E8B68-A4BD-465E-A3D4-8E23C96BBB93}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {04D95AC7-A480-494E-AF65-FAD3C2C0CD96}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,120 @@
+﻿@{
+    var title = "Sport";
+    if (ViewData.TryGetValue("Title", out object titleResult))
+    {
+        title = titleResult.ToString();
+    }
+}
+@inject SportWebSite.Security.IEncrypting enc;
+@using SportWebSite.Domain.Authorization;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="~/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/css/fontawesome-all.min.css" rel="stylesheet">
+    <link href="~/css/swiper.css" rel="stylesheet">
+    <link href="~/css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/nicepage.css" media="screen">
+    <link rel="stylesheet" href="~/css/Page-13.css" media="screen">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&amp;display=swap" rel="stylesheet">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i">
+    <link href="~/css/bootstrap-select.min.css" rel="stylesheet">
+    <link href="~/css/custom_style.css" rel="stylesheet">
+    <title>@title</title>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbarExample" class="navbar navbar-expand-lg fixed-top navbar-light" aria-label="Main navigation">
+        <div class="container">
+
+            <!-- Image Logo -->
+            <a class="navbar-brand logo-image" href="~/"><img src="~/images/logo.png" alt="alternative"></a>
+
+            <button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav ms-auto navbar-nav-scroll">
+                    @if (!Url.ActionContext.ActionDescriptor.DisplayName.Contains("Account"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="~/">Home</a>
+                        </li>
+                        @if (User.IsInRole(Roles.ADMIN))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("ShowUsers", "User")">Users</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("Index", "Settings")">Settings</a>
+                            </li>
+                        }
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("ShowTeams", "Team")">Teams</a>
+                        </li>
+                    }
+                </ul>
+            </div> <!-- end of navbar-collapse -->
+            @if (User.Identity.IsAuthenticated)
+            {
+                <!-- Icon dropdown -->
+                <ul class="navbar-nav d-flex flex-row">
+                    <li class="nav-item me-3 me-lg-0 dropdown">
+                        <a class="nav-link dropdown-toggle"
+                           href="#"
+                           id="navbarDropdown"
+                           role="button"
+                           data-mdb-toggle="dropdown"
+                           aria-expanded="false">
+                            <i class="fas fa-user"></i>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li>
+                                <p class="dropdown-item">Hi, @User.Identity.Name!</p>
+                            </li>
+                            <li><hr class="dropdown-divider" /></li>
+                            <li>
+                                <a class="dropdown-item" href="~/Identity/Account/ResetPassword">Reset password</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="~/Account/Logout">Logout</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            }
+        </div> <!-- end of container -->
+    </nav> <!-- end of navbar -->
+    <!-- end of navigation -->
+    <div>
+        @RenderBody()
+    </div>
+    <!-- Copyright -->
+    <footer class="copyright bg-gray">
+        <div class="container">
+            <div class="row">
+                <div style="margin-left:150px" class="col-lg-3 col-md-12 col-sm-12">
+                    <p class="p-small statement">Copyright © <a target="_blank" href="https://dataart.com">DataArt</a> @(DateTime.Now.Year)</p>
+                </div> <!-- end of col -->
+
+                <div style="margin-left:150px" class="col-lg-3 col-md-12 col-sm-12">
+                    <p class="p-small statement">Made by Vladyslav Kyrylenko</p>
+                </div> <!-- end of col -->
+            </div> <!-- enf of row -->
+        </div> <!-- end of container -->
+    </footer> <!-- end of copyright -->
+    <!-- end of copyright -->
+    <script src="~/js/bootstrap.min.js"></script> <!-- Bootstrap framework -->
+    <script src="~/js/swiper.min.js"></script> <!-- Swiper for image and text sliders -->
+    <script src="~/js/scripts.js"></script> <!-- Custom scripts -->
+    <script class="u-script" type="text/javascript" src="~/js/jquery-1.9.1.min.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="~/js/nicepage.js" defer=""></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

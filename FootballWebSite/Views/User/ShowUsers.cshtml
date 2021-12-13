@@ -1,0 +1,55 @@
+﻿@model IEnumerable<SportWebSite.Domain.Entities.User>
+@{
+    Layout = "_Layout";
+}
+@using SportWebSite.Domain.Authorization;
+
+@if (User.IsInRole(Roles.ADMIN))
+{
+    <div>
+        <div class="go-back">
+            <a class="btn btn-primary btn-block" href="..">Back</a>
+        </div>
+        <br />
+        <table class="users">
+            <thead>
+                <tr>
+                    <th scope="col">Email</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Date of Birth</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                    <tr>
+                        <td>@user.Email</td>
+                        <td>@user.Name</td>
+                        <td>@user.BirthDate</td>
+                        <td>@user.Location</td>
+                        <td>@user.Role</td>
+                        <td>@user.Gender</td>
+                        <td class="button">
+                            <div class="func-buttons">
+                                <a class="btn in-table-button btn-primary" style="background-color: #f3c806; " href="EditUser/@user.Id" role="button">
+                                    <i class="fas fa-pen"></i>
+                                </a>
+                                <a class="btn in-table-button btn-primary" style="background-color: #f31406; " href="DeleteUser/@user.Id" role="button">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </div>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <a class="btn btn-primary" style="background-color: #0af306;" href="~/Identity/Account/Register" role="button">
+            <i class="fas fa-plus-circle"></i>
+        </a>
+    </div>
+}

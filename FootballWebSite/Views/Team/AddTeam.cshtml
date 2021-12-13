@@ -1,0 +1,41 @@
+﻿@model SportWebSite.ServiceModels.TeamServiceModel
+@{
+    Layout = "_Layout";
+}
+@using SportWebSite.Domain.Enums
+@using SportWebSite.Domain.Authorization;
+
+@if (User.IsInRole(Roles.ADMIN) || User.IsInRole(Roles.MANAGER))
+{
+    <div class="mt-100">
+        <div class="go-back">
+            <a class="btn btn-primary btn-block" href="~/Team/ShowTeams">Back</a>
+        </div>
+        <br />
+        <form method="post">
+            <table>
+                <tr>
+                    <td>Team name:</td>
+                    <td><input class="w-250" type="text" asp-for="TeamName" minlength="5" maxlength="25" required /> <span asp-validation-for="TeamName"></span></td>
+                </tr>
+                <tr>
+                    <td>Sport type:</td>
+                    <td>@Html.DropDownListFor(m => m.SportType, new SelectList(Enum.GetValues(typeof(SportType))), new { @class = "w-250" }) <span asp-validation-for="SportType"></span></td>
+                </tr>
+                <tr>
+                    <td>Choose players to add:</td>
+                    <td>
+                        @Html.DropDownListFor(model => model.PlayerIds, Model.Players.Select(p => new SelectListItem { Text = p.Name, Value = p.Id.ToString(), Selected = true }), new { @multiple = "multiple", @class = "selectpicker w-250" })
+                    </td>
+                </tr>
+            </table>
+            <button type="submit" class="btn btn-success btn-rounded">Add team</button>@Html.ActionLink("", "ShowTeams", "Team")
+        </form>
+    </div>
+}
+else
+{
+    <div class="mt-300">
+        You don't have any permissions to see this page.
+    </div>
+}

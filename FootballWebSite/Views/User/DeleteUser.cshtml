@@ -1,0 +1,26 @@
+﻿@model SportWebSite.Domain.Entities.User
+@{
+    Layout = "_Layout";
+}
+@using SportWebSite.Domain.Authorization;
+
+@if (User.IsInRole(Roles.ADMIN))
+{
+    <div>
+        <div class="go-back">
+            <a class="btn btn-primary btn-block" href="~/User/ShowUsers">Back</a>
+        </div>
+        <form asp-controller="User" asp-action="DeleteUser" method="post">
+            <div class="form-group">
+                <p style="margin-top: 50px">Are you sure to delete this user?</p>
+                <button type="submit" class="btn btn-danger btn-rounded">Delete</button>
+            </div>
+        </form>
+    </div>
+}
+else
+{
+    <div class="mt-300">
+        You don't have any permissions to see this page.
+    </div>
+}

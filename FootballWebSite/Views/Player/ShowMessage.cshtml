@@ -1,0 +1,20 @@
+﻿@{
+    Layout = "_Layout";
+}
+@using SportWebSite.Domain.Authorization;
+
+@if (User.IsInRole(Roles.ADMIN))
+{
+    <div>
+        <div class="sync">
+            <p>Player(s) were added successfully!</p>
+            <a class="btn btn-primary btn-block bg-dark btn-sync" href="@Url.Action("ShowTeams", "Team")">Go to Teams</a>
+        </div>
+    </div>
+}
+else
+{
+    <div class="mt-300">
+        You don't have permissions to see this page.
+    </div>
+}

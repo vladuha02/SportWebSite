@@ -1,0 +1,44 @@
+﻿@model IEnumerable<SportWebSite.ServiceModels.PlayerServiceModel>
+@{
+    Layout = "_Layout";
+}
+
+@using System.Collections.Generic;
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div>
+        <div class="go-back">
+            <a class="btn btn-primary btn-block" href="~/Team/ShowTeams">Back</a>
+        </div>
+        <br />
+        <div class="container">
+            @for (int i = 1; i < Model.Count() + 1; i++)
+            {
+                <div class="wrapper">
+                    <div class="row" style="width: 200%; flex-wrap: nowrap;">
+                        <div class="col-md" style="">@i)</div>
+                        <div class="col-md">@Model.ElementAt(i - 1).name</div>
+                        <div class="col-md">@Model.ElementAt(i - 1).dateOfBirth</div>
+                        <div class="col-md">@Model.ElementAt(i - 1).countryOfBirth</div>
+                        <div class="col-md">@Model.ElementAt(i - 1).nationality</div>
+                        <div class="col-md">@Model.ElementAt(i - 1).position</div>
+                        <div class="col-md">@Model.ElementAt(i - 1).role</div>
+                        <a class="btn in-table-button btn-primary" style="background-color: #f3c806; width: 3%; margin-right: 5px;" href="~/Player/EditPlayer/@Model.ElementAt(i-1).id" role="button">
+                            <i class="fas fa-pen"></i>
+                        </a>
+                        <a class="btn in-table-button btn-primary" style="background-color: #f31406; width: 3%" href="~/Player/DeletePlayer/@Model.ElementAt(i-1).id" role="button">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+else
+{
+    <div class="mt-300">
+        You don't have permissions to see this page.
+    </div>
+}
